@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: wasm_bindgen attribute
+# key: wbg
+# --
+#[wasm_bindgen]
