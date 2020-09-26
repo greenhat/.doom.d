@@ -28,7 +28,10 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-gruvbox-light)
+;; (setq doom-theme 'doom-gruvbox-light)
+;; (setq doom-theme 'doom-solarized-light)
+(load-theme 'solarized-light t)
+;; (load-theme 'solarized-gruvbox-light t)
 
 (setq doom-gruvbox-light-variant 'hard)
 ;; If you use `org' and don't want your org files in the default location below,
@@ -82,6 +85,9 @@
 (setq lsp-rust-analyzer-cargo-watch-command "clippy")
 (setq lsp-rust-analyzer-cargo-all-targets t)
 (setq lsp-rust-all-targets t)
+;; set lib path
+;; (setq lsp-rust-analyzer-exclude-globs )
+;; (setq lsp-rust-library-directories)
 
 ;; auto-refresh all buffers when files have changed on disk
 (setq global-auto-revert-mode t)
@@ -131,7 +137,9 @@
 ;; point(cursor) as line
 (setq-default cursor-type 'rectangle)
 
-(global-set-key (kbd "s-t") 'lsp-execute-code-action)
+(global-set-key (kbd "s-m") 'lsp-execute-code-action)
+(global-set-key (kbd "s-n") 'flycheck-next-error)
+(global-set-key (kbd "s-p") 'flycheck-previous-error)
 
 ;; (map! "C-c c g" #'lsp-ui-flycheck-list)
 (map! "C-c c g" #'lsp-treemacs-errors-list)
@@ -150,6 +158,5 @@
 (after! lsp-treemacs
   (setq lsp-treemacs-sync-mode 1)
   (global-set-key (kbd "C-c c l c") 'lsp-treemacs-call-hierarchy))
-
 
 (global-set-key (kbd "M-z") 'zap-up-to-char)

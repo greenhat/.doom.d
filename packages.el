@@ -52,3 +52,4 @@
 (package! whole-line-or-region)
 (package! git-link)
 (package! lsp-treemacs)
+(package! solarized-theme)
