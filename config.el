@@ -79,6 +79,7 @@
 
 ;; Rust
 (setq rustic-lsp-server 'rust-analyzer)
+;; (setq rustic-lsp-server 'rls)
 ;; build tests
 (setq lsp-rust-cfg-test t)
 ;; cargo clippy instead of check
@@ -88,6 +89,7 @@
 ;; set lib path
 ;; (setq lsp-rust-analyzer-exclude-globs )
 ;; (setq lsp-rust-library-directories)
+(setq lsp-rust-clippy-preference "on")
 
 ;; auto-refresh all buffers when files have changed on disk
 (setq global-auto-revert-mode t)
@@ -160,3 +162,9 @@
   (global-set-key (kbd "C-c c l c") 'lsp-treemacs-call-hierarchy))
 
 (global-set-key (kbd "M-z") 'zap-up-to-char)
+
+(after! rustic-flycheck
+  (add-hook! 'flycheck-mode-hook  (flycheck-posframe-mode +1))
+  )
+
+(setq gcmh-high-cons-threshold (* 4 1024 1024 1024))
