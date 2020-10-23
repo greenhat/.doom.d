@@ -53,3 +53,4 @@
 (package! git-link)
 (package! lsp-treemacs)
 (package! solarized-theme)
+(package! unisonlang-mode)
