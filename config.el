@@ -113,13 +113,13 @@
             latex-mode))
 
 ;; Avy
-(global-set-key (kbd "s-f") 'avy-goto-char-timer)
+(global-set-key (kbd "C-;") 'avy-goto-char-timer)
 
 (global-set-key (kbd "M--") 'negative-argument) ; revert to default from Doom
 
-;; For Rust
-(add-hook! 'rustic-mode-hook (modify-syntax-entry ?_ "w"))
-(add-hook! 'rust-mode-hook (modify-syntax-entry ?_ "w"))
+;; don't treat "_" as word delimiter
+;; (add-hook! 'rustic-mode-hook (modify-syntax-entry ?_ "w"))
+;; (add-hook! 'rust-mode-hook (modify-syntax-entry ?_ "w"))
 
 ;; (global-unset-key (kbd "C-="))
 (global-set-key (kbd "C-=") 'lsp-extend-selection)
@@ -129,7 +129,6 @@
 ;; define-key smartparens-mode-map (kbd "C-M-t") 'nil)
 ;; (define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-hybrid-sexp)
 
-;; TODO: does not work. Too soon? Run after some event?
 (after! smartparens
   (define-key smartparens-mode-map (kbd "C-M-a") 'nil)
   (define-key smartparens-mode-map (kbd "C-M-e") 'nil)
@@ -137,6 +136,7 @@
   (define-key smartparens-mode-map (kbd "C-M-b") 'nil)
   (define-key smartparens-mode-map (kbd "C-M-d") 'nil)
   (define-key smartparens-mode-map (kbd "C-M-k") 'nil)
+  (define-key smartparens-mode-map (kbd "C-M-S-K") 'sp-kill-hybrid-sexp)
   (define-key smartparens-mode-map (kbd "C-M-t") 'nil))
 
 
@@ -147,8 +147,8 @@
 (global-set-key (kbd "s-n") 'flycheck-next-error)
 (global-set-key (kbd "s-p") 'flycheck-previous-error)
 
-;; (map! "C-c c g" #'lsp-ui-flycheck-list)
-(map! "C-c c g" #'lsp-treemacs-errors-list)
+(map! "s-i" #'lsp-ui-flycheck-list)
+;; (map! "C-c c g" #'lsp-treemacs-errors-list)
 
 ;; cut/copy the current line if no region is active
 (whole-line-or-region-global-mode)
@@ -161,9 +161,9 @@
 ;; rust-analyzer crashes on start if enabled
 (setq lsp-enable-semantic-highlighting nil)
 
-(after! lsp-treemacs
-  (setq lsp-treemacs-sync-mode 1)
-  (global-set-key (kbd "C-c c l c") 'lsp-treemacs-call-hierarchy))
+;; (after! lsp-treemacs
+  ;; (setq lsp-treemacs-sync-mode 1)
+  ;; (global-set-key (kbd "C-c c l c") 'lsp-treemacs-call-hierarchy))
 
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
@@ -172,3 +172,7 @@
   )
 
 (setq gcmh-high-cons-threshold (* 4 1024 1024 1024))
+
+(global-set-key (kbd "C-j") `lsp-ivy-workspace-symbol)
+(global-set-key (kbd "C-d") `+lookup/definition)
+(global-set-key (kbd "s-l") `+lookup/references)

@@ -51,6 +51,7 @@
 
 (package! whole-line-or-region)
 (package! git-link)
-(package! lsp-treemacs)
+;; (package! lsp-treemacs :disable t)
 (package! solarized-theme)
 (package! unisonlang-mode)
+(package! restclient)
